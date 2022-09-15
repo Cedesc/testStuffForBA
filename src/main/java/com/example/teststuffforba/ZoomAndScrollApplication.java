@@ -1,6 +1,9 @@
-package com.example.teststuffforba.zooming;
+package com.example.teststuffforba;
 
 
+import com.example.teststuffforba.zooming.NodeGestures;
+import com.example.teststuffforba.zooming.PannableCanvas;
+import com.example.teststuffforba.zooming.SceneGestures;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
