@@ -3,7 +3,7 @@ package com.example.teststuffforba.zooming;
 /**
  * Mouse drag context used for scene and nodes.
  */
-class DragContext {
+public class DragContext {
 
     double mouseAnchorX;
     double mouseAnchorY;
