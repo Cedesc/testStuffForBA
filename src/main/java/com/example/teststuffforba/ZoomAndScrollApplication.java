@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 
 /**
  * An application with a zoomable and pannable canvas.
+ * <p>
+ * <a href="https://stackoverflow.com/questions/29506156/javafx-8-zooming-relative-to-mouse-pointer">Source</a>
  */
 public class ZoomAndScrollApplication extends Application {
     public static void main(String[] args) {
