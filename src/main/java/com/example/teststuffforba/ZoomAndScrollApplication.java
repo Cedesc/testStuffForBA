@@ -88,8 +88,30 @@ public class ZoomAndScrollApplication extends Application {
 //        scene.addEventFilter(MouseEvent.MOUSE_DRAGGED, sceneGestures.getOnMouseDraggedEventHandler());
         scene.addEventFilter(ScrollEvent.ANY, sceneGestures.getOnScrollEventHandler());
 
-        stage.setScene(scene);
+//        stage.setScene(scene);
+//        stage.show();
+
+
+
+        // OWN STUFF
+        Label label = new Label("Hellllllo");
+        Button button = new Button("Click");
+        button.setOnAction(event -> System.out.println("Hello World"));
+
+        HBox hbox = new HBox();
+        hbox.getChildren().add(label);
+        hbox.getChildren().add(button);
+
+        Scene sceneOwn = new Scene(hbox, 1024, 768);
+
+        SceneGestures sceneGestures1 = new SceneGestures(canvas);  // TODO: 16.09.2022 canvas kann ich so nicht benutzen -> nächster Schritt: Aus PannableCanvas nun eine Klasse machen, die von HBox erbt und das kann
+        scene.addEventFilter(ScrollEvent.ANY, sceneGestures1.getOnScrollEventHandler());
+
+        stage.setScene(sceneOwn);
         stage.show();
+        // END OF OWN STUFF
+
+
 
 //        canvas.addGrid();
 
