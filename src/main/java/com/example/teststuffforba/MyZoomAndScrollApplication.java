@@ -1,30 +1,16 @@
 package com.example.teststuffforba;
 
-
-//import com.example.teststuffforba.zooming.NodeGestures;
 import com.example.teststuffforba.zooming.PannableCanvas;
 import com.example.teststuffforba.zooming.SceneGestures;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-//import javafx.scene.control.Label;
-//import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
-//import javafx.scene.paint.Color;
-//import javafx.scene.shape.Circle;
-//import javafx.scene.shape.Rectangle;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-/**
- * An application with a zoomable and pannable canvas.
- * <p>
- * <a href="https://stackoverflow.com/questions/29506156/javafx-8-zooming-relative-to-mouse-pointer">Source</a>
- */
-public class ZoomAndScrollApplication extends Application {
+public class MyZoomAndScrollApplication extends Application {
     public static void main(String[] args) {
         launch(args);
     }
@@ -39,8 +25,8 @@ public class ZoomAndScrollApplication extends Application {
 
         // we don't want the canvas on the top/left in this example => just
         // translate it a bit
-        canvas.setTranslateX(100);
-        canvas.setTranslateY(100);
+//        canvas.setTranslateX(100);
+//        canvas.setTranslateY(100);
 
         // create sample nodes which can be dragged
 //        NodeGestures nodeGestures = new NodeGestures(canvas);
@@ -89,18 +75,30 @@ public class ZoomAndScrollApplication extends Application {
 //        scene.addEventFilter(MouseEvent.MOUSE_DRAGGED, sceneGestures.getOnMouseDraggedEventHandler());
         scene.addEventFilter(ScrollEvent.ANY, sceneGestures.getOnScrollEventHandler());
 
-        stage.setScene(scene);
-        stage.show();
+//        stage.setScene(scene);
+//        stage.show();
 
-        canvas.getChildren().add(new Label("Helllo"));
-        Label label1 = new Label("Holla");
-        Button button1 = new Button("Click");
-        button1.setOnAction(event -> {
-            System.out.println("HeyHey");
-        });
-        HBox hbox = new HBox();
-        hbox.getChildren().addAll(label1, button1);
-        canvas.getChildren().add(hbox);
+
+
+        // OWN STUFF
+        Label label = new Label("Hellllllo");
+        Button button = new Button("Click");
+        button.setOnAction(event -> System.out.println("Hello World"));
+
+        MyHBox hbox = new MyHBox();
+        hbox.getChildren().add(label);
+        hbox.getChildren().add(button);
+
+        Scene sceneOwn = new Scene(hbox, 1024, 768);
+
+        // TODO: 16.09.2022 canvas kann ich so nicht benutzen -> nächster Schritt:
+        //  Aus PannableCanvas nun eine Klasse machen, die von HBox erbt und das kann
+        MySceneGestures mySceneGestures = new MySceneGestures(hbox);
+        scene.addEventFilter(ScrollEvent.ANY, mySceneGestures.getOnScrollEventHandler());
+
+        stage.setScene(sceneOwn);
+        stage.show();
+        // END OF OWN STUFF
 
 
 
