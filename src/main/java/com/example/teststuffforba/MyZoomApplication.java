@@ -9,7 +9,7 @@ import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class MyZoomAndScrollApplication extends Application {
+public class MyZoomApplication extends Application {
     public static void main(String[] args) {
         launch(args);
     }
