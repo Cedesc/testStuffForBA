@@ -2,13 +2,13 @@ package com.example.teststuffforba;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 
-public class MyHBox extends HBox {
+public class MyPannableCanvas extends Pane {
 
     DoubleProperty myScale = new SimpleDoubleProperty(1.0);
 
-    public MyHBox() {
+    public MyPannableCanvas() {
         setPrefSize(600, 600);
         setStyle("-fx-background-color: lightgrey; -fx-border-color: blue;");
 
@@ -21,13 +21,12 @@ public class MyHBox extends HBox {
         return myScale.get();
     }
 
-    public void setScale(double scale) {
+    public void setScale( double scale) {
         myScale.set(scale);
     }
 
-    public void setPivot(double x, double y) {
-        setTranslateX(getTranslateX() - x);
-        setTranslateY(getTranslateY() - y);
+    public void setPivot( double x, double y) {
+        setTranslateX(getTranslateX()-x);
+        setTranslateY(getTranslateY()-y);
     }
-
 }

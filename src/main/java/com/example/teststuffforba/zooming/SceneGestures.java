@@ -1,7 +1,7 @@
 package com.example.teststuffforba.zooming;
 
 import javafx.event.EventHandler;
-//import javafx.scene.input.MouseEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 
 /**
@@ -12,7 +12,7 @@ public class SceneGestures {
     private static final double MAX_SCALE = 10.0d;
     private static final double MIN_SCALE = .1d;
 
-//    private DragContext sceneDragContext = new DragContext();
+    private DragContext sceneDragContext = new DragContext();
 
     PannableCanvas canvas;
 
@@ -20,49 +20,49 @@ public class SceneGestures {
         this.canvas = canvas;
     }
 
-//    public EventHandler<MouseEvent> getOnMousePressedEventHandler() {
-//        return onMousePressedEventHandler;
-//    }
-//
-//    public EventHandler<MouseEvent> getOnMouseDraggedEventHandler() {
-//        return onMouseDraggedEventHandler;
-//    }
+    public EventHandler<MouseEvent> getOnMousePressedEventHandler() {
+        return onMousePressedEventHandler;
+    }
+
+    public EventHandler<MouseEvent> getOnMouseDraggedEventHandler() {
+        return onMouseDraggedEventHandler;
+    }
 
     public EventHandler<ScrollEvent> getOnScrollEventHandler() {
         return onScrollEventHandler;
     }
 
-//    private EventHandler<MouseEvent> onMousePressedEventHandler = new EventHandler<MouseEvent>() {
-//
-//        public void handle(MouseEvent event) {
-//
-//            // right mouse button => panning
-//            if( !event.isSecondaryButtonDown())
-//                return;
-//
-//            sceneDragContext.mouseAnchorX = event.getSceneX();
-//            sceneDragContext.mouseAnchorY = event.getSceneY();
-//
-//            sceneDragContext.translateAnchorX = canvas.getTranslateX();
-//            sceneDragContext.translateAnchorY = canvas.getTranslateY();
-//
-//        }
-//
-//    };
+    private EventHandler<MouseEvent> onMousePressedEventHandler = new EventHandler<MouseEvent>() {
 
-//    private EventHandler<MouseEvent> onMouseDraggedEventHandler = new EventHandler<MouseEvent>() {
-//        public void handle(MouseEvent event) {
-//
-//            // right mouse button => panning
-//            if( !event.isSecondaryButtonDown())
-//                return;
-//
-//            canvas.setTranslateX(sceneDragContext.translateAnchorX + event.getSceneX() - sceneDragContext.mouseAnchorX);
-//            canvas.setTranslateY(sceneDragContext.translateAnchorY + event.getSceneY() - sceneDragContext.mouseAnchorY);
-//
-//            event.consume();
-//        }
-//    };
+        public void handle(MouseEvent event) {
+
+            // right mouse button => panning
+            if( !event.isSecondaryButtonDown())
+                return;
+
+            sceneDragContext.mouseAnchorX = event.getSceneX();
+            sceneDragContext.mouseAnchorY = event.getSceneY();
+
+            sceneDragContext.translateAnchorX = canvas.getTranslateX();
+            sceneDragContext.translateAnchorY = canvas.getTranslateY();
+
+        }
+
+    };
+
+    private EventHandler<MouseEvent> onMouseDraggedEventHandler = new EventHandler<MouseEvent>() {
+        public void handle(MouseEvent event) {
+
+            // right mouse button => panning
+            if( !event.isSecondaryButtonDown())
+                return;
+
+            canvas.setTranslateX(sceneDragContext.translateAnchorX + event.getSceneX() - sceneDragContext.mouseAnchorX);
+            canvas.setTranslateY(sceneDragContext.translateAnchorY + event.getSceneY() - sceneDragContext.mouseAnchorY);
+
+            event.consume();
+        }
+    };
 
     /**
      * Mouse wheel handler: zoom to pivot point

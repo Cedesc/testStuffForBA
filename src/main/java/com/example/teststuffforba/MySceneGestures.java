@@ -1,6 +1,5 @@
 package com.example.teststuffforba;
 
-import com.example.teststuffforba.zooming.PannableCanvas;
 import javafx.event.EventHandler;
 import javafx.scene.input.ScrollEvent;
 
@@ -11,10 +10,10 @@ public class MySceneGestures {
 
 //    private DragContext sceneDragContext = new DragContext();
 
-    MyHBox hbox;
+    MyPannableCanvas canvas;
 
-    public MySceneGestures(MyHBox hbox) {
-        this.hbox = hbox;
+    public MySceneGestures(MyPannableCanvas canvas) {
+        this.canvas = canvas;
     }
 
     public EventHandler<ScrollEvent> getOnScrollEventHandler() {
@@ -31,7 +30,7 @@ public class MySceneGestures {
 
             double delta = 1.2;
 
-            double scale = hbox.getScale(); // currently we only use Y, same value is used for X
+            double scale = canvas.getScale(); // currently we only use Y, same value is used for X
             double oldScale = scale;
 
             if (event.getDeltaY() < 0)
@@ -43,15 +42,15 @@ public class MySceneGestures {
 
             double f = (scale / oldScale)-1;
 
-            double dx = (event.getSceneX() - (hbox.getBoundsInParent().getWidth()/2
-                    + hbox.getBoundsInParent().getMinX()));
-            double dy = (event.getSceneY() - (hbox.getBoundsInParent().getHeight()/2
-                    + hbox.getBoundsInParent().getMinY()));
+            double dx = (event.getSceneX() - (canvas.getBoundsInParent().getWidth()/2
+                    + canvas.getBoundsInParent().getMinX()));
+            double dy = (event.getSceneY() - (canvas.getBoundsInParent().getHeight()/2
+                    + canvas.getBoundsInParent().getMinY()));
 
-            hbox.setScale( scale);
+            canvas.setScale( scale);
 
             // note: pivot value must be untransformed, i. e. without scaling
-            hbox.setPivot(f*dx, f*dy);
+            canvas.setPivot(f*dx, f*dy);
 
             event.consume();
 
