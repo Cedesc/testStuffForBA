@@ -51,9 +51,7 @@ public class MyZoomApplication extends Application {
         // create Label, Button and VBox
         Label label1 = new Label("Holla");
         Button button1 = new Button("Click");
-        button1.setOnAction(event -> {
-            System.out.println("HeyHey");
-        });
+        button1.setOnAction(event -> System.out.println("HeyHey"));
         VBox vbox = new VBox();
         vbox.getChildren().addAll(label1, button1);
 

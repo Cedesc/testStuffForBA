@@ -8,8 +8,6 @@ public class MySceneGestures {
     private static final double MAX_SCALE = 10.0d;
     private static final double MIN_SCALE = .1d;
 
-//    private DragContext sceneDragContext = new DragContext();
-
     MyPannableCanvas canvas;
 
     public MySceneGestures(MyPannableCanvas canvas) {
@@ -23,7 +21,7 @@ public class MySceneGestures {
     /**
      * Mouse wheel handler: zoom to pivot point
      */
-    private EventHandler<ScrollEvent> onScrollEventHandler = new EventHandler<ScrollEvent>() {
+    private EventHandler<ScrollEvent> onScrollEventHandler = new EventHandler<>() {
 
         @Override
         public void handle(ScrollEvent event) {
@@ -38,19 +36,19 @@ public class MySceneGestures {
             else
                 scale *= delta;
 
-            scale = clamp( scale, MIN_SCALE, MAX_SCALE);
+            scale = clamp(scale, MIN_SCALE, MAX_SCALE);
 
-            double f = (scale / oldScale)-1;
+            double f = (scale / oldScale) - 1;
 
-            double dx = (event.getSceneX() - (canvas.getBoundsInParent().getWidth()/2
+            double dx = (event.getSceneX() - (canvas.getBoundsInParent().getWidth() / 2
                     + canvas.getBoundsInParent().getMinX()));
-            double dy = (event.getSceneY() - (canvas.getBoundsInParent().getHeight()/2
+            double dy = (event.getSceneY() - (canvas.getBoundsInParent().getHeight() / 2
                     + canvas.getBoundsInParent().getMinY()));
 
-            canvas.setScale( scale);
+            canvas.setScale(scale);
 
             // note: pivot value must be untransformed, i. e. without scaling
-            canvas.setPivot(f*dx, f*dy);
+            canvas.setPivot(f * dx, f * dy);
 
             event.consume();
 
