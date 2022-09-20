@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -28,14 +29,20 @@ public class MyZoomApplication extends Application {
         canvas.setTranslateY(100);
 
 
+        // create "normal" pane and add the PannableCanvas to it
+        Pane pane = new Pane();
+        pane.getChildren().add(canvas);
 
-        group.getChildren().add(canvas);
+        // add the pane with PannableCanvas to the group
+        group.getChildren().add(pane);
 
         // create scene which can be dragged and zoomed
         Scene scene = new Scene(group, 1024, 768);
 
         MySceneGestures sceneGestures = new MySceneGestures(canvas);
-        scene.addEventFilter(ScrollEvent.ANY, sceneGestures.getOnScrollEventHandler());
+        canvas.addEventFilter(ScrollEvent.ANY, sceneGestures.getOnScrollEventHandler());
+        // If you want to be able to scroll in the entire window, use this instead of the preceding line:
+        // scene.addEventFilter(ScrollEvent.ANY, sceneGestures.getOnScrollEventHandler());
 
         stage.setScene(scene);
         stage.show();
